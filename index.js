@@ -25,6 +25,7 @@ app.use(express.json())
 // Use the morgan middleware tiny configuration with the payload token at the end.
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :payload'))
 app.use(cors())
+app.use(express.static('build'))
 
 let persons = [
     {
