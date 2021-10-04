@@ -12,7 +12,7 @@ const unknownEndpoint = (request, response) => {
 
 // This is PART 3.7.
 // app.use(morgan('tiny'))
-// OR 
+// OR
 // app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 // This is PART 3.8.
@@ -39,7 +39,7 @@ app.get('/api/persons', (request, response) => {
     })
 })
 
-app.get('/info', (request, response) => {
+app.get('/info', (request, response, next) => {
     Person.countDocuments()
         .then(result => {
             const message = `
@@ -63,7 +63,7 @@ app.get('/api/persons/:id', (request, response, next) => {
         .catch(error => next(error))
 })
 
-app.delete('/api/persons/:id', (request, response) => {
+app.delete('/api/persons/:id', (request, response, next) => {
     Person.findByIdAndRemove(request.params.id)
         .then(result => {
             response.status(204).end()
